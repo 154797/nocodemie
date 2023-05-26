@@ -17,7 +17,6 @@ test.describe('case management', async () => {
       page,
     }) => {
       const loginUtils = new ExamUtils(page);
-     
       // // Betty Blocks inloggen
       // // await page.goto('https://my.bettyblocks.com/');
       // await page.type('input[name="loginId"]', appSettings.bettyuser.username);
