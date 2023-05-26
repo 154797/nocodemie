@@ -23,9 +23,6 @@ jobs:
         env:
           url: ${{ github.event.inputs.url }}
 
-      - name: Create cache folder
-        run: mkdir cache
-
       - name: Run tests
         continue-on-error: true
         run: npx playwright test ${{ github.event.inputs.test }}
