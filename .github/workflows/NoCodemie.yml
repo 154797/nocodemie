@@ -25,8 +25,11 @@ jobs:
           
       - name: Create cache folder
         run: mkdir cache
-
+          
       - name: Run tests
         continue-on-error: true
         run: npx playwright test ${{ github.event.inputs.test }}
+        
+      - name: Copy contents temporary folder to results
+        run: cp -R cache/* ./test-results
 
