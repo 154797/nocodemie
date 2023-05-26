@@ -29,6 +29,14 @@ jobs:
       - name: Run tests
         continue-on-error: true
         run: npx playwright test ${{ github.event.inputs.test }}
+<<<<<<< HEAD
 
       - name: Copy contents temporary folder to results
         run: cp -R cache/* ./test-results
+=======
+        
+      - name: Copy contents temporary folder to results
+        run: cp -R cache/* ./test-results
+
+
+>>>>>>> 6f0181cfa09343b2b23f896f724c0d10a9de21d0
