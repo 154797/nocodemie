@@ -22,13 +22,14 @@ jobs:
           files: 'app-settings.json'
         env:
           url: ${{ github.event.inputs.url }}
-
+          
       - name: Create cache folder
         run: mkdir cache
-
+          
       - name: Run tests
         continue-on-error: true
         run: npx playwright test ${{ github.event.inputs.test }}
+<<<<<<< HEAD
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
@@ -38,3 +39,9 @@ jobs:
           message: 'result: ${{ github.event.inputs.filename }}'
           add: '${{ github.event.inputs.filename }}.json'
           cwd: './results'
+=======
+        
+      - name: Copy contents temporary folder to results
+        run: cp -R cache/* ./test-results
+
+>>>>>>> 373b688ef7a14d4aa9e381af658335849e21f397
