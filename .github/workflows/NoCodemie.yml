@@ -1,21 +1,9 @@
-name: Run test
+name: Playwright Tests
 on:
-  workflow_dispatch:
-    inputs:
-      url:
-        description: 'URL of target page to test (example: https://roy-consultancy.betty.app/codemie-demo)'
-        required: true
-      test:
-        description: 'Specify the testfile you would like to run (example: hello_world)'
-        required: true
-      filename:
-        description: 'Filename of result saved in repo'
-        required: true
-env:
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Skip downloading during yarn install
-  PLAYWRIGHT_BROWSERS_PATH: 0 # Places binaries to node_modules/@playwright/test
-  PLAYWRIGHT_JSON_OUTPUT_NAME: ./cache/${{ github.event.inputs.filename }}.json
-
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
 jobs:
   test-exam:
     runs-on: ubuntu-latest
@@ -43,7 +31,7 @@ jobs:
         run: npx playwright test ${{ github.event.inputs.test }}
 
       - name: Copy contents temporary folder to results
-        run: cp -R cache/* ./test-results
+        run: cp -R cache/* ./results
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
