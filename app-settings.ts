@@ -1,5 +1,5 @@
 export const appSettings = {
-  app_identifier: 'case-management-ehab',
+  app_identifier: 'codemie-ehab',
   webuser: {
     username: 'ehab@test.com',
     password: 'Welkom01',
