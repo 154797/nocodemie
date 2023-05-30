@@ -9,7 +9,7 @@ on:
 jobs:
   test-exam:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    continue-on-error: false
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -31,11 +31,11 @@ jobs:
         run: npx playwright test ${{ github.event.inputs.test }}
 
       - name: Copy contents temporary folder to results
-        run: cp -R cache/* ./cache/results
+        run: cp -R cache/* ./results
 
       - name: Commit changes
         run: |
-          cd cache/results
+          cd results
           git config --global user.name "Betty Blocks"
           git config --global user.email "noreply@bettyblocks.com"
           git add .
