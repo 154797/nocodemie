@@ -1,15 +1,14 @@
 import { test, expect } from "@playwright/test";
 import { url } from "../app-settings.json";
 
-const newPageTitle = "home";
 
 test.beforeEach(async ({ page }) => {
-  const newPageUrl = url + newPageTitle.toLocaleLowerCase();
+  const newPageUrl = url + "home";
   await page.goto(newPageUrl);
   await page.waitForTimeout(2000);
 });
 
-test(`1.1 Create a new blank page and name it ${newPageTitle}`, async ({
+test(`1.1 Create a new blank page and name it Home`, async ({
   page,
 }) => {
   const rootElement = page.locator("id=app");
