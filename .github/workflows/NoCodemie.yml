@@ -34,5 +34,8 @@ jobs:
       - name: Commit changes
         uses: actions/checkout@v3
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.ref }}
+          author_name: Betty Blocks
+          author_email: noreply@bettyblocks.com
+          message: 'result: ${{ github.event.inputs.filename }}'
+          add: '${{ github.event.inputs.filename }}.json'
+          cwd: './results'
