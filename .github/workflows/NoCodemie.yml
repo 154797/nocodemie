@@ -1,6 +1,7 @@
 name: Run test
+
 on:
-  push: 
+  push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
@@ -8,7 +9,7 @@ on:
 jobs:
   test-exam:
     runs-on: ubuntu-latest
-    continue-on-error: false
+    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,25 +18,25 @@ jobs:
         run: |
           npm i
           npx playwright install
+
       - name: Substitute JSON file
         uses: microsoft/variable-substitution@v1
         with:
           files: 'app-settings.json'
         env:
           url: ${{ github.event.inputs.url }}
-          
+
       - name: Run tests
         continue-on-error: true
         run: npx playwright test ${{ github.event.inputs.test }}
 
       - name: Copy contents temporary folder to results
-        run: cp -R cache/* ./results
-        
+        run: cp -R cache/* ./cache/results
+
       - name: Commit changes
-        uses: actions/checkout@v3
-        with:
-          author_name: Betty Blocks
-          author_email: noreply@bettyblocks.com
-          message: 'result: ${{ github.event.inputs.filename }}'
-          add: '${{ github.event.inputs.filename }}.json'
-          cwd: './results'
+        run: |
+          cd cache/results
+          git config --global user.name "Betty Blocks"
+          git config --global user.email "noreply@bettyblocks.com"
+          git add .
+          git commit -m "result: ${{ github.event.inputs.filename }}.json"
