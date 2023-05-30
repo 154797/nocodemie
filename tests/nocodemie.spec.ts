@@ -4,7 +4,7 @@ import { url } from "../app-settings.json";
 const newPageTitle = "home";
 
 test.beforeEach(async ({ page }) => {
-  const newPageUrl = url + "" + newPageTitle.toLocaleLowerCase();
+  const newPageUrl = url + newPageTitle.toLocaleLowerCase();
   await page.goto(newPageUrl);
   await page.waitForTimeout(2000);
 });
