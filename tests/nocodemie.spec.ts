@@ -6,6 +6,7 @@ const newPageTitle = "home";
 test.beforeEach(async ({ page }) => {
   const newPageUrl = url + "/" + newPageTitle.toLocaleLowerCase();
   await page.goto(newPageUrl);
+  await page.waitForTimeout(2000);
 });
 
 test(`1.1 Create a new blank page and name it ${newPageTitle}`, async ({
