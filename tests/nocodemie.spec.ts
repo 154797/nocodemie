@@ -3,15 +3,18 @@ import { url } from "../app-settings.json";
 
 
 
-test.beforeEach(async ({ page }) => {
-  const newPageUrl = url + "home";
-  await page.goto(newPageUrl);
-  await page.waitForTimeout(2000);
-});
+// test.beforeEach(async ({ page }) => {
+//   const newPageUrl = url + "home";
+//   await page.goto(newPageUrl);
+//   await page.waitForTimeout(2000);
+// });
 
 test(`1.1 Create a new blank page and name it Home`, async ({
   page,
 }) => {
+  const newPageUrl = url + "home";
+  await page.goto(newPageUrl);
+  await page.waitForTimeout(2000);
   const rootElement = page.locator("id=app");
   await expect(rootElement, "page is create and compiled").toBeDefined();
   await page.waitForTimeout(2000);
