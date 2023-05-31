@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { url } from "../app-settings.json";
+import json from "../app-settings.json";
 
 
 
@@ -12,8 +12,8 @@ import { url } from "../app-settings.json";
 test(`1.1 Create a new blank page and name it Home`, async ({
   page,
 }) => {
-  const newPageUrl = url + "home";
-  console.log("url", url);
+  const newPageUrl = json.url + "home";
+  console.log("url: ", json.url);
   await page.goto('https://codemie-ehab.betty.app/home');
   await page.waitForTimeout(2000);
   const rootElement = page.locator("id=app");
