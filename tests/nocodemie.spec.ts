@@ -52,7 +52,7 @@ test(`1.4 Have the ‘Text’ component display the following text: ${textConten
   const text = await column
     .locator(`[data-component=Text]`)
     .nth(0)
-    .textContent();
+    .textContent(); 
 
   await expect(text, `text should be: `).toBe(textContent);
   await page.waitForTimeout(2000);
