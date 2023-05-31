@@ -13,6 +13,7 @@ test(`1.1 Create a new blank page and name it Home`, async ({
   page,
 }) => {
   const newPageUrl = url + "home";
+  console.log("url", url);
   await page.goto('https://codemie-ehab.betty.app/home');
   await page.waitForTimeout(2000);
   const rootElement = page.locator("id=app");
