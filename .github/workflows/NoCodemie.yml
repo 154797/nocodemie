@@ -51,5 +51,5 @@ jobs:
           author_name: Betty Blocks
           author_email: noreply@bettyblocks.com
           message: 'result: ${{ github.event.inputs.filename }}'
-          add: '${{ github.event.inputs.filename }}.json'
+          add: 'result-${{ github.run_number }}.json'
           cwd: './results'
