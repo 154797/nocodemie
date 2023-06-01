@@ -34,18 +34,15 @@ jobs:
 
       - name: Run tests
         continue-on-error: true
-        run: npx playwright test ${{ github.event.inputs.test }} --output=./cache/results/report.json
-        
-      - name: Display report.json
-        run: cat report.json
+        run: npx playwright test ${{ github.event.inputs.test }} --output=./cache/report.json
 
       - name: Copy contents temporary folder to results
         run: cp -R cache/ ./results
-        
+      
       - name: Create result JSON file
         run: |
           echo "${{ steps.test.outputs.report }}" > ./results/result-${{ github.run_number }}.json
-          
+
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
         with:
