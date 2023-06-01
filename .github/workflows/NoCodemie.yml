@@ -34,16 +34,16 @@ jobs:
 
       - name: Run tests
         continue-on-error: true
-        run: npx playwright test ${{ github.event.inputs.test }}
+        run: npx playwright test ${{ github.event.inputs.test }} --output=report.json
 
       - name: Copy contents temporary folder to results
-        run: cp -R cache/* ./results
+        run: cp -R cache/ ./results
         
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
         with:
           author_name: Betty Blocks
           author_email: noreply@bettyblocks.com
-          message: 'result: ${{ github.event.inputs.filename }}'
-          add: '${{ github.event.inputs.filename }}.json'
+          message: 'result: result-${{ github.run_number }}.json'
+          add: 'result-${{ github.run_number }}.json'
           cwd: './results'
