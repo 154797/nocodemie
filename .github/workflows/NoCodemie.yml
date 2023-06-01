@@ -37,7 +37,7 @@ jobs:
         run: npx playwright test 
         
       - name: Display report.json
-        run: cat outputFile
+        run: cat result-${{ github.run_number }}.json
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
