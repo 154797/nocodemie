@@ -39,10 +39,10 @@ jobs:
           echo "${{ steps.test.outputs.report }}" > ./results/result-${{ github.run_number }}.json
 
       - name: Commit changes
-        run: |
-          cd ./results
-          git init
-          git config user.name "Betty Blocks"
-          git config user.email "noreply@bettyblocks.com"
-          git add .
-          git commit -m "result-${{ github.run_number }}.json"
+        uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
+        with:
+          author_name: Betty Blocks
+          author_email: noreply@bettyblocks.com
+          message: 'result: ${{ github.event.inputs.filename }}'
+          add: '${{ github.event.inputs.filename }}.json'
+          cwd: './results'
