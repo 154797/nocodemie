@@ -34,7 +34,7 @@ jobs:
 
       - name: Run tests
         continue-on-error: true
-        run: npx playwright test nocodemie
+        run: PLAYWRIGHT_JSON_OUTPUT_NAME=result-${{ github.run_number }}.json npx playwright test --reporter=json
 
       - name: Copy contents temporary folder to results
         run: cp -R cache/ ./results/
