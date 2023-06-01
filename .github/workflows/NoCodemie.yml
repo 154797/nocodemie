@@ -41,5 +41,5 @@ jobs:
           author_name: Betty Blocks
           author_email: noreply@bettyblocks.com
           message: 'result: result-${{ github.run_number }}.json'
-          add: 'outputFile'
+          add: 'result-${{ github.run_number }}.json'
           cwd: './results'
