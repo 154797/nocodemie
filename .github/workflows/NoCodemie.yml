@@ -1,22 +1,14 @@
 name: Run test
-on:
+on: 
+  workflow_dispatch:
   push:
     branches: [main, master]
-  workflow_dispatch:
-    inputs:
-      url:
-        description: 'https://codemie-ehab.betty.app/home'
-        required: true
-      test:
-        description: 'NoCodemie'
-        required: true
-      filename:
-        description: 'Filename of result saved in repo'
-        required: true
+  pull_request:
+    branches: [main, master]
 env:
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Skip downloading during yarn install
   PLAYWRIGHT_BROWSERS_PATH: 0 # Places binaries to node_modules/@playwright/test
-  PLAYWRIGHT_JSON_OUTPUT_NAME: ./cache/results/${{ github.event.inputs.filename }}.json
+  PLAYWRIGHT_JSON_OUTPUT_NAME: ./cache/${{ github.event.inputs.filename }}.json
 
 jobs:
   test-exam:
@@ -40,22 +32,22 @@ jobs:
       - name: Create cache folder
         run: mkdir cache    
 
+      - name: Create result JSON file
+        run: |
+          echo "${{ steps.test.outputs.report }}" > ./results/result-${{ github.run_number }}.json
+          
       - name: Run tests
         continue-on-error: true
-        run: npx playwright test nocodemie
+        run: npx playwright test nocodemie --output=./cache/results/result-${{ github.run_number }}.json
 
       - name: Copy contents temporary folder to results
         run: cp -R cache/ ./results
-        
-      - name: Create result JSON file
-        run: |
-          echo "${{ steps.test.outputs.report }}" > ./results/${{ github.event.inputs.filename }}.json
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
         with:
           author_name: Betty Blocks
           author_email: noreply@bettyblocks.com
-          message: 'result: ${{ github.event.inputs.filename }}'
-          add: '${{ github.event.inputs.filename }}.json'
+          message: 'result: result-${{ github.run_number }}.json'
+          add: 'result-${{ github.run_number }}.json'
           cwd: './results'
