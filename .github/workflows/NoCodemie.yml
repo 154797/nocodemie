@@ -8,7 +8,6 @@ on:
 env:
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Skip downloading during yarn install
   PLAYWRIGHT_BROWSERS_PATH: 0 # Places binaries to node_modules/@playwright/test
-  PLAYWRIGHT_JSON_OUTPUT_NAME: ./cache/${{ github.event.inputs.filename }}.json
 
 jobs:
   test-exam:
@@ -29,12 +28,12 @@ jobs:
         env:
           url: ${{ github.event.inputs.url }}
           
-      - name: Create cache folder
-        run: mkdir cache    
+#       - name: Create cache folder
+#         run: mkdir cache    
 
       - name: Run tests
         continue-on-error: true
-        run: npx playwright test 
+        run:  PLAYWRIGHT_JSON_OUTPUT_NAME=result-${{ github.run_number }}.json npx playwright test --reporter=json 
    
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
