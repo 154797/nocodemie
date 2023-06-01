@@ -39,7 +39,7 @@ jobs:
         run: npx playwright test ${{ github.event.inputs.test }}
 
       - name: Copy contents temporary folder to results
-        run: cp -R cache/. results/
+        run: cp -R cache/* ./results/
 
       - name: Create result JSON file
         run: |
