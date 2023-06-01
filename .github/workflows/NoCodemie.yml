@@ -34,10 +34,6 @@ jobs:
         id: test
         run: npx playwright test ${{ github.event.inputs.test }} --output=report.json
         
-      - name: Run tests
-        continue-on-error: true
-        run: npx playwright test ${{ github.event.inputs.test }}
-
       - name: Copy contents temporary folder to results
         run: cp -R cache/ .results/
 
