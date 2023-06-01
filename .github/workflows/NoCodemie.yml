@@ -34,7 +34,7 @@ jobs:
 
       - name: Run tests
         continue-on-error: true
-        run: npx playwright test ${{ github.event.inputs.test }} --output=./cache/report.json
+        run: npx playwright test ${{ github.event.inputs.test }} --output=./cache/results/report.json
         
       - name: Display report.json
         run: cat report.json
