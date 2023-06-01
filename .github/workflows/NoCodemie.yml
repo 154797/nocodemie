@@ -41,7 +41,7 @@ jobs:
         run: npx playwright test nocodemie
 
       - name: Copy contents temporary folder to results
-        run: cp -R cache/ ./results/result-${{ github.run_number }}.json
+        run: cp -R cache/* ./results/result-${{ github.run_number }}.json
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
