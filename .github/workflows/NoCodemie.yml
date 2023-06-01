@@ -32,16 +32,16 @@ jobs:
       - name: Create cache folder
         run: mkdir cache    
 
-      - name: Create result JSON file
-        run: |
-          echo "${{ steps.test.outputs.report }}" > ./results/result-${{ github.run_number }}.json
-          
       - name: Run tests
         continue-on-error: true
         run: npx playwright test ${{ github.event.inputs.test }} --output=./cache/results/result-${{ github.run_number }}.json
 
       - name: Copy contents temporary folder to results
         run: cp -R cache/ ./results
+
+      - name: Create result JSON file
+        run: |
+          echo "${{ steps.test.outputs.report }}" > ./results/result-${{ github.run_number }}.json
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
