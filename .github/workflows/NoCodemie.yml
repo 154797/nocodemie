@@ -32,10 +32,6 @@ jobs:
       - name: Create cache folder
         run: mkdir cache    
 
-      - name: Create result JSON file
-        run: |
-          echo "${{ steps.test.outputs.report }}" > ./results/result-${{ github.run_number }}.json
-          
       - name: Run tests
         continue-on-error: true
         run: npx playwright test nocodemie
