@@ -3,16 +3,6 @@ on:
   push:
     branches: [main, master]
   workflow_dispatch:
-    inputs:
-      url:
-        description: 'URL of target page to test (example: https://roy-consultancy.betty.app/codemie-demo)'
-        required: true
-      test:
-        description: 'Specify the testfile you would like to run (example: hello_world)'
-        required: true
-      filename:
-        description: 'Filename of result saved in repo'
-        required: true
 env:
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Skip downloading during yarn install
   PLAYWRIGHT_BROWSERS_PATH: 0 # Places binaries to node_modules/@playwright/test
