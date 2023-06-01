@@ -34,7 +34,7 @@ jobs:
 
       - name: Run tests
         continue-on-error: true
-        run: PLAYWRIGHT_JSON_OUTPUT_NAME=result-${{ github.run_number }}.json npx playwright test --reporter=json
+        run: npx playwright test 
         
       - name: Display report.json
         run: cat result-${{ github.run_number }}.json
