@@ -45,5 +45,5 @@ jobs:
           author_name: Betty Blocks
           author_email: noreply@bettyblocks.com
           message: 'result: result-${{ github.run_number }}.json'
-          add: 'result-${{ github.run_number }}.json'
+          add: 'PLAYWRIGHT_JSON_OUTPUT_NAME'
           cwd: './results'
