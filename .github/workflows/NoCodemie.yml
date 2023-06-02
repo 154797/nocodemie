@@ -9,7 +9,7 @@ on:
         description: 'NoCodemie'
         required: true
       filename:
-        description: '.json'
+        description: 'test.json'
         required: true
   push:
     branches: [main, master]
