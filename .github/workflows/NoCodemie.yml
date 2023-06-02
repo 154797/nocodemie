@@ -57,5 +57,5 @@ jobs:
           author_name: Betty Blocks
           author_email: noreply@bettyblocks.com
           message: 'result: ${{ github.event.inputs.filename }}'
-          add: 'results/NoCodemie.json'
+          add: 'NoCodemie.json'
           cwd: './results'
