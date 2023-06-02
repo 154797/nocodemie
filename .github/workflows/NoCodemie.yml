@@ -38,6 +38,9 @@ jobs:
         env:
           url: ${{ github.event.inputs.url }}
           
+      - name: Create cache folder
+        run: mkdir cache   
+          
       - name: Run tests
         continue-on-error: true
         run: npx playwright test
@@ -45,11 +48,14 @@ jobs:
       - name: Display content
         run: cat NoCodemie.json
         
+      - name: Copy contents temporary folder to results
+        run: cp -R cache/ ./results
+        
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
         with:
           author_name: Betty Blocks
           author_email: noreply@bettyblocks.com
           message: 'result: ${{ github.event.inputs.filename }}'
-          add: 'NoCodemie.json'
+          add: 'results/NoCodemie.json'
           cwd: './results'
