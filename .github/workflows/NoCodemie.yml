@@ -9,7 +9,7 @@ on:
         description: 'NoCodemie'
         required: true
       filename:
-        description: 'result-${{ github.run_number }}.json'
+        description: '${{ github.run_number }}.json'
         required: true
   push:
     branches: [main, master]
