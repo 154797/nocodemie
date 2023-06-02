@@ -1,7 +1,7 @@
 import { PlaywrightTestConfig, devices, defineConfig } from "@playwright/test";
 
 export default defineConfig({
-  reporter: [['json', { outputFile: 'NoCadie.json' }]],
+  reporter: [['json', { outputFile: 'NoCodemie.json' }]],
 });
 /**
  * See https://playwright.dev/docs/test-configuration.
