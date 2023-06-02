@@ -41,7 +41,10 @@ jobs:
       - name: Run tests
         continue-on-error: true
         run:  npx playwright test NoCodemie
-   
+        
+      - name: Display JSON file content
+        run: cat ./results/${{ github.event.inputs.filename }}.json
+
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
         with:
