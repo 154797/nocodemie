@@ -40,7 +40,7 @@ jobs:
           
       - name: Run tests
         continue-on-error: true
-        run:  npx playwright test NoCodemie
+        run:  npx playwright test NoCodemie --output=./cache/results/result-${{ github.run_number }}.json
         
       - name: Display JSON file content
         run: cat ./results/${{ github.event.inputs.filename }}.json
