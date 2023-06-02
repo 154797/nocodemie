@@ -1,6 +1,16 @@
 name: Run test
 on: 
   workflow_dispatch:
+   inputs:
+      url:
+        description: 'https://codemie-ehab.betty.app/home'
+        required: true
+      test:
+        description: 'NoCodemie'
+        required: true
+      filename:
+        description: 'result-${{ github.run_number }}.json'
+        required: true
   push:
     branches: [main, master]
   pull_request:
@@ -33,13 +43,13 @@ jobs:
 
       - name: Run tests
         continue-on-error: true
-        run:  PLAYWRIGHT_JSON_OUTPUT_NAME=result-${{ github.run_number }}.json npx playwright test --reporter=json 
+        run:  npx playwright test ${{ github.event.inputs.test }}
    
       - name: Commit changes
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
         with:
           author_name: Betty Blocks
           author_email: noreply@bettyblocks.com
-          message: 'result: result-${{ github.run_number }}.json'
-          add: 'result-${{ github.run_number }}.json'
+          message: 'result: ${{ github.event.inputs.filename }}'
+          add: '${{ github.event.inputs.filename }}.json'
           cwd: './results'
