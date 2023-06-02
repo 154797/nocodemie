@@ -40,7 +40,7 @@ jobs:
           
       - name: Run tests
         continue-on-error: true
-        run:  npx playwright test NoCodemie --output=results/NoCodemie.json
+        run: PLAYWRIGHT_JSON_OUTPUT_NAME= NoCodemie.json npx playwright test --reporter=json
         
       - name: Display content
         run: cat NoCodemie.json
