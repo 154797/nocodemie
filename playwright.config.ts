@@ -1,5 +1,8 @@
-import { PlaywrightTestConfig, devices } from "@playwright/test";
+import { PlaywrightTestConfig, devices, defineConfig } from "@playwright/test";
 
+export default defineConfig({
+  reporter: [['json', { outputFile: 'NoCadie.json' }]],
+});
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
